@@ -1,0 +1,42 @@
+class Solution{
+
+    // a: input array
+    // n: size of array
+    //Function to find maximum circular subarray sum.
+    static int circularSubarraySum(int a[], int n) {
+       int maxSum = kadane(a, n);
+
+        int totalSum = 0;
+        int minSum = Integer.MAX_VALUE;
+        int currentSum = 0;
+
+        for (int i = 0; i < n; i++) {
+            totalSum += a[i];
+
+            
+            currentSum = Math.min(a[i], a[i] + currentSum);
+            minSum = Math.min(minSum, currentSum);
+        }
+
+        // Calculate the circular subarray sum
+        int circularSum = totalSum - minSum;
+
+        // Choose the maximum of the two cases
+        return Math.max(maxSum, (circularSum == 0) ? maxSum : circularSum);
+    }
+
+   
+    static int kadane(int a[], int n) {
+        int max = Integer.MIN_VALUE;
+        int currentMax = 0;
+
+        for (int i = 0; i < n; i++) {
+            currentMax = Math.max(a[i], a[i] + currentMax);
+            max = Math.max(max, currentMax);
+        }
+
+        return max;
+    }
+    
+}
+
