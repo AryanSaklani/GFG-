@@ -1,0 +1,14 @@
+class Solution {
+    int missingNumber(int array[], int n) {
+         Arrays.sort(array);
+        int i=0;
+        int x=1;
+        for(;i<array.length;i++){
+            if(array[i]!=x){
+                return x;
+            }
+            x++;
+        }
+        return n;
+    }
+}
