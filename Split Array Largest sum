@@ -1,0 +1,43 @@
+class Solution {
+    
+    static boolean isPossible(int[] arr, int mid, int k) {
+        int sub_array = 1, sum = 0;
+        
+        for (int num: arr) {
+            sum += num;
+            if (sum > mid) {
+                sub_array++;
+                sum = num;
+            }
+        }
+        
+        return sub_array <= k;
+    }
+    
+    static int splitArray(int[] arr , int N, int K) {
+        // code here
+        int max = 0, sum = 0;
+        
+        for (int val: arr) {
+            sum += val;
+            max = Math.max(max, val);
+        }
+        
+        if (K == N) return max;
+        
+        int start = max, end = sum, ans = 0;
+        
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            
+            if (isPossible(arr, mid, K)) {
+                ans = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        
+        return ans;
+    }
+}; // best solution
