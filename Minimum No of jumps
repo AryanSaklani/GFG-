@@ -1,0 +1,42 @@
+class Solution{
+    static int minJumps(int[] arr){
+        // your code here
+        if(arr.length==1){
+            return 0;
+        }
+        int a=arr[0];
+        if(a==0){
+            return -1;
+        }
+        
+        int jump=0;
+        int curr_pos=0;
+        int prev_pos=0;
+        
+        while(true){     //INFINITE LOOP
+            int j=0;
+            int index=0;
+            while(a>0){
+                index++;
+                if(index+prev_pos>=arr.length-1){
+                    jump++;
+                    return jump;
+                }
+                int temp=arr[prev_pos+index];
+                if(j<=temp+index){
+                    curr_pos=prev_pos+index;
+                    j=temp+index;
+                }
+                a--;
+            }
+            if(j==0){
+                return -1;
+            }
+            else{
+                prev_pos=curr_pos;
+                a=arr[curr_pos];
+                jump++;
+            }
+        }
+    }
+}
