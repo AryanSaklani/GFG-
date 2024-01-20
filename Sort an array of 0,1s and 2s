@@ -1,0 +1,33 @@
+int countOfZeros =0,countOfOnes=0,countOfTwos=0,counter=0 ;
+        
+        for (int i =0;i<n;i++)
+        {
+            if(a[i]==0)
+            {
+                countOfZeros++;;
+            }
+            if(a[i]==1)
+            {
+                countOfOnes++;
+            }
+            if(a[i]==2)
+            {
+                countOfTwos++;
+            }
+        }
+    
+        for(int i=0;i<countOfZeros;i++)
+        {
+            a[counter++]=0;
+    
+        }
+        
+        for(int i=0;i<countOfOnes;i++)
+        {
+            a[counter++]=1;
+        }
+        
+        for(int i=0;i<countOfTwos;i++)
+        {
+            a[counter++]=2;
+        }
