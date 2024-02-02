@@ -1,0 +1,12 @@
+class Solution
+{
+    int atoi(String s) {
+        try{
+            return Integer.parseInt(s);
+        }catch(Exception e){
+            
+        }
+        
+        return -1;
+    }
+}
