@@ -1,0 +1,2 @@
+ Arrays.sort(arr);
+        return arr[n-1];
