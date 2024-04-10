@@ -28,14 +28,12 @@ class GFG
 
 //User function Template for Java
 
-class Solution{
-    static int findSingle(int N, int arr[]){
-        int sum=0;
-        // code here
-        for(int i=0;i<N;i++){
-           sum=sum^arr[i];
+class Solution {
+    static int findSingle(int n, int arr[]) {
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            result ^= arr[i];
         }
-        return sum;
+        return result;
     }
-
-}  ;
+}
