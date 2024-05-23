@@ -29,34 +29,32 @@ class GFG {
 
 
 // User function Template for Java
-
 class Solution {
-    public static int noOfGasStationsBetween(int[] arr, double dist) {
-        int cnt = 0, n = arr.length;
-    
-        for (int i = 0; i < n - 1; i++) {
-          double stationsInBetween = (arr[i + 1] - arr[i]) / dist;
-          cnt += stationsInBetween;
+    static double findSmallestMaxDist(int a[], int k) {
+        int n=a.length;
+        double l=0, r=maxDist(a);
+        while(l+1e-6<r){
+            double mid = (r+l)/2;
+            if(possible(a,n,k,mid)){
+                r=mid;
+            }else{
+                l=mid;
+            }
         }
-    
-        return cnt;
+        return r;
     }
-
-    public static double findSmallestMaxDist(int[] arr, int k) {
-        int n = arr.length;
-        double maxi = Integer.MIN_VALUE;
-        for (int i = 0; i < n - 1; i++) maxi =
-          Math.max(maxi, (double) (arr[i + 1] - arr[i]));
-    
-        double low = 0, high = maxi, diff = 1e-6; // 10^-6
-        while(high - low > diff) {
-            double mid = low + (high - low) / 2;
-            if(noOfGasStationsBetween(arr, mid) <= k)
-                high=mid;
-            else    
-                low=mid;
+    static boolean possible(int a[],int n,int k,double mid){
+        int req=0;
+        for(int i=1;i<n;i++){
+            double diff = a[i]-a[i-1];
+            req += Math.ceil(diff/mid)-1;
         }
-        
-        return high;
+        return req<=k;
     }
-};
+    static double maxDist(int a[]){
+        int n = a.length;
+        double maxDist=0.0;
+        for(int i=1;i<n;i++)    maxDist = Math.max(maxDist,a[i]-a[i-1]);
+        return maxDist;
+    }
+}
